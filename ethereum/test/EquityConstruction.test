@@ -1,0 +1,31 @@
+var c = EquityConstruction.deployed()
+var cc = EquityLoan.deployed()
+var i1 = web3.eth.accounts
+var i2 = c.then(i => i.bank())
+var i3 = c.then(i => i.tax()).then(i => i.toNumber())
+var ca = c.then(i => i.address)
+var cca = cc.then(i => i.address)
+c.then(i => i.setLoan(cca))
+c.then(i => i.setEquityConstruction(ca))
+var i4 = c.then(i => i.loanAddress())
+var i5 = cc.then(i => i.equityConstructionAddress())
+c.then(i => i.invest({from: web3.eth.accounts[2], value: web3.toWei(10, "ether")}))
+c.then(i => i.invest({from: web3.eth.accounts[3], value: web3.toWei(10, "ether")}))
+c.then(i => i.invest({from: web3.eth.accounts[4], value: web3.toWei(10, "ether")}))
+c.then(i => i.invest({from: web3.eth.accounts[5], value: web3.toWei(10, "ether")}))
+c.then(i => i.invest({from: web3.eth.accounts[6], value: web3.toWei(10, "ether")}))
+c.then(i => i.invest({from: web3.eth.accounts[7], value: web3.toWei(10, "ether")}))
+var i6 = c.then(i => i.fund())
+var i7 = c.then(i => i.userCount())
+var i8 = cc.then(i => i.allFund())
+var i9 = cc.then(i => i.availableFund())
+
+i1
+i2
+i3
+i4
+i5
+i6
+i7
+i8
+i9
