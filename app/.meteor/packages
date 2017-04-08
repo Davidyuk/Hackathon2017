@@ -46,4 +46,3 @@ ethereum:accounts
 ethereum:dapp-styles
 numeral:numeral
 jrudio:bluebird
-tap:i18n-bundler
