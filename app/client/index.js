@@ -16,6 +16,7 @@ Meteor.startup(function() {
             TAPi18n.setLanguage('en');
         }
     }
+
     // change moment and numeral language, when language changes
     Tracker.autorun(function(){
         if(_.isString(TAPi18n.getLanguage())) {

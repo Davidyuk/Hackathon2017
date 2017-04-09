@@ -1,5 +1,3 @@
-var template;
-
 var config = {
     registryAbi: [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"performerStorage","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"performer","type":"address"},{"name":"operation","type":"uint32"}],"name":"verifyOperation","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"operationTypes","outputs":[{"name":"name","type":"string"},{"name":"desc","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"performer","type":"address"},{"name":"name","type":"string"},{"name":"rating","type":"uint8"},{"name":"desc","type":"string"}],"name":"addPerformer","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getPerformerStorage","outputs":[{"name":"","type":"address[]"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"name","type":"string"},{"name":"desc","type":"string"}],"name":"addOperationType","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"touch","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"performers","outputs":[{"name":"name","type":"string"},{"name":"rating","type":"uint8"},{"name":"desc","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getOperationTypesLength","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"_name","type":"string"}],"payable":false,"type":"constructor"}],
     autoAbi: [{"constant":false,"inputs":[{"name":"id","type":"uint32"},{"name":"notes","type":"string"}],"name":"makeOperation","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getOperationsLength","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"registry","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"makePrivate","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"touch","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"changeOwner","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"r","type":"address"}],"name":"setRegistry","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"hidden","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"id","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"operations","outputs":[{"name":"id","type":"uint32"},{"name":"registry","type":"address"},{"name":"performer","type":"address"},{"name":"notes","type":"string"},{"name":"date","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"makePublic","outputs":[],"payable":false,"type":"function"},{"inputs":[{"name":"r","type":"address"},{"name":"_id","type":"string"}],"payable":false,"type":"constructor"}],
@@ -9,66 +7,3 @@ var config = {
 };
 
 
-Template['views_cars'].onCreated(function() {
-});
-
-Template['views_cars'].onRendered(function() {
-    template = this;
-    var autoId = FlowRouter.getParam('id');
-
-    if (web3.isAddress(autoId)) {
-        var auto = web3.eth.contract(config.autoAbi).at(autoId);
-
-        var l = auto.getOperationsLength().toNumber();
-        console.log(l);
-
-        console.log(auto.owner());
-        console.log(auto.registry());
-        console.log(auto.hidden());
-
-
-        TemplateVar.set(template, 'loading', true);
-        var names = [];
-        var dates = [];
-        var comments = [];
-        var services = [];
-        for (var i = (l-1); i >= 0; i--) {
-            var service = new Object();
-            var o = auto.operations(i);
-            o[0] = o[0].toNumber();
-            o[4] = o[4].toNumber();
-            var r = web3.eth.contract(config.registryAbi).at(o[1]);
-            o[5] = r.name();
-            o[6] = r.operationTypes(o[0]);
-            var p = r.performers(o[2]);
-            // console.log(p);
-            p[1] = p[1].toNumber();
-            o[7] = p;
-            console.log(o);
-
-            service.name = o[5];
-            service.date = o[4];
-            service.comment = o[3];
-            services.push(service);
-        }
-        console.log(services);
-        TemplateVar.set(template, 'services', services);
-        // setTimeout(function() {
-        //
-        //     TemplateVar.set(template, 'services', [3, 2, 1]);
-        // }, 3000);
-        TemplateVar.set(template, 'loading', false);
-    }
-});
-
-Template['views_cars'].events({
-    'submit form': function(e) {
-        FlowRouter.go('car', { id: e.target.to.value.slice(2) });
-    }
-});
-
-Template['views_cars'].helpers({
-    'carId': function() {
-        return FlowRouter.getParam('id');
-    }
-});

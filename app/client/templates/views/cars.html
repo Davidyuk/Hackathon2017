@@ -18,8 +18,8 @@
 
     <table>
         <tr><td>Исполнитель</td><td>Дата</td><td>Комментарий</td></tr>
-        {{#each service in TemplateVar.get "services"}}
-        <tr><td>Test</td><td>{{service}}</td></tr>
+        {{#each services in TemplateVar.get "services"}}
+        <tr><td>{{services.name}}</td><td>{{services.date}}</td>{{services.comment}}</tr>
         {{/each}}
     </table>
 </template>

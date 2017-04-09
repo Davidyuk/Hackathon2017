@@ -2,12 +2,12 @@
     <h1>Зарегистрировать услугу</h1>
 
     <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
-    <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+    <form class="reg-service" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
         <h3>Номер автомобиля</h3>
         <div class="row">
             <div class="col col-8 mobile-full">
                 {{> dapp_addressInput placeholder="0x000000.." name="to" autofocus=true}}
-                <textarea class="dapp-data-textarea" placeholder="Описание услуги" rows="10"></textarea>
+                <textarea name="description" class="dapp-data-textarea" placeholder="Описание услуги" rows="10"></textarea>
             </div>
             <div class="dapp-clear-fix"></div>
         </div>
