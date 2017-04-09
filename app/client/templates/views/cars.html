@@ -16,10 +16,19 @@
       Пожалуйста, подождите...
     {{/if}}
 
+    <h3>Информация</h3>
+    <table id="autoInfo">
+        <tr><td>Владелец</td><td>Идентификатор авто</td><td>История обслуживания скрыта</td></tr>
+            {{#each auto in TemplateVar.get "autos"}}
+               <tr><td>{{auto.owner}}</td><td>{{auto.autoId}}</td><td>{{auto.historyShowed}}</td></tr>
+            {{/each}}
+    </table>
+    <h3>История обслуживания</h3>
     <table>
-        <tr><td>Исполнитель</td><td>Дата</td><td>Комментарий</td></tr>
+        <tr><td>Реестр</td><td>Исполнитель</td><td>Рейтинг исполнителя</td><td>Услуга</td><td>Примечание</td><td>Дата</td></tr>
         {{#each services in TemplateVar.get "services"}}
-        <tr><td>{{services.name}}</td><td>{{services.date}}</td>{{services.comment}}</tr>
+        <tr><td>{{services.registry}}</td><td>{{services.name}}</td><td>{{services.rating}}</td>
+            <td>{{services.service}}</td><td>{{services.comment}}</td><td>{{services.date}}</td></tr>
         {{/each}}
     </table>
 </template>
