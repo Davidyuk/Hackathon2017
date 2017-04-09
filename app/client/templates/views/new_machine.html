@@ -1,0 +1,29 @@
+<template name="views_new_machine">
+    <h1>Добавить машину</h1>
+
+    <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+    <form action="about:blank" class="add-reg" target="dapp-form-helper-iframe" autocomplete="on">
+        <h3>Реестр</h3>
+        <div class="row">
+            <div class="col col-8 mobile-full">
+                {{> dapp_addressInput placeholder="Реестр" value=regId name="toReg" autofocus=true}}
+            </div>
+            <div class="dapp-clear-fix"></div>
+        </div>
+    </form>
+    <form action="about:blank" class="add-ser" target="dapp-form-helper-iframe" autocomplete="on">
+        <h3>Серийный номер</h3>
+        <div class="row">
+            <div class="col col-8 mobile-full">
+                {{> dapp_addressInput placeholder="Серийный номер" value=carId name="toNum" autofocus=true}}
+            </div>
+            <div class="dapp-clear-fix"></div>
+        </div>
+
+
+        {{#if TemplateVar.get "loading"}}
+            Пожалуйста, подождите...
+        {{/if}}
+        <button type="submit" class="dapp-block-button">Добавить</button>
+    </form>
+</template>

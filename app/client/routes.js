@@ -64,7 +64,7 @@ FlowRouter.route('/registry/:id', {
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
-            main: 'views_cars'
+            main: 'views_registry'
         });
     }
 });
@@ -95,6 +95,16 @@ FlowRouter.route('/services', {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
             main: 'views_services'
+        });
+    }
+});
+
+FlowRouter.route('/new_machine', {
+    name: 'new_machine',
+    action: function(params, queryParams) {
+        BlazeLayout.render('layout_main', {
+            header: 'layout_header',
+            main: 'views_new_machine'
         });
     }
 });
