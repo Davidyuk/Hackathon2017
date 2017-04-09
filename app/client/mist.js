@@ -53,6 +53,6 @@ Meteor.startup(function() {
     // make reactive
     Tracker.autorun(updateMistMenu);
 
-    web3.setProvider(new web3.providers.HttpProvider('http://10.193.25.22:8545'));
+    web3.setProvider(new web3.providers.HttpProvider('http://77.35.180.244:8545'));
 
 });
