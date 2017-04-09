@@ -1,0 +1,25 @@
+<template name="views_cars">
+    <h1>Информация об автомобиле</h1>
+
+    <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+    <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+        <h3>Номер автомобиля</h3>
+        <div class="row">
+            <div class="col col-8 mobile-full">
+                {{> dapp_addressInput placeholder="0x000000.." value=carId name="to" autofocus=true}}
+            </div>
+            <div class="dapp-clear-fix"></div>
+        </div>
+    </form>
+
+    {{#if TemplateVar.get "loading"}}
+      Пожалуйста, подождите...
+    {{/if}}
+
+    <table>
+        <tr><td>Исполнитель</td><td>Дата</td><td>Комментарий</td></tr>
+        {{#each service in TemplateVar.get "services"}}
+        <tr><td>Test</td><td>{{service}}</td></tr>
+        {{/each}}
+    </table>
+</template>

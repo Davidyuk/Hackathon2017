@@ -45,149 +45,52 @@ FlowRouter.route('/', {
     }
 });
 
-
-/**
-The send route.
-
-@method send
-*/
-FlowRouter.route('/send', {
-    name: 'send',
+FlowRouter.route('/registry', {
+    name: 'registry',
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
-            main: 'views_send'
+            main: 'views_registry'
         });
     }
 });
 
-/**
-The Coins route.
-
-@method tokens
-*/
-FlowRouter.route('/tokens', {
-    name: 'tokens',
+FlowRouter.route('/registry/:id', {
+    name: 'registry',
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
-            main: 'views_tokens'
+            main: 'views_cars'
         });
     }
 });
 
-
-/**
-The Coins route.
-
-@method tokens
-*/
-FlowRouter.route('/contracts', {
-    name: 'contracts',
+FlowRouter.route('/cars', {
+    name: 'cars',
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
-            main: 'views_contracts'
+            main: 'views_cars'
         });
     }
 });
 
-
-
-/**
-The send route.
-
-@method send
-*/
-FlowRouter.route('/send/:address', {
-    name: 'sendTo',
+FlowRouter.route('/cars/:id', {
+    name: 'car',
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
-            main: 'views_send'
+            main: 'views_cars'
         });
     }
 });
 
-/**
-The send route.
-
-@method send
-*/
-FlowRouter.route('/send-from/:from', {
-    name: 'sendFrom',
+FlowRouter.route('/services', {
+    name: 'services',
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
-            main: 'views_send'
+            main: 'views_services'
         });
     }
 });
-
-/**
-The send route.
-
-@method send
-*/
-FlowRouter.route('/send-token/:from/:token', {
-    name: 'sendToken',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_send'
-        });
-    }
-});
-
-
-/**
-The send route.
-
-@method send
-*/
-FlowRouter.route('/deploy-contract', {
-    name: 'deployContract',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_send',
-            data: {
-                deployContract: true
-            }
-        });
-    }
-});
-
-
-/**
-The create account route.
-
-@method send
-*/
-FlowRouter.route('/account/new', {
-    name: 'createAccount',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_account_create'
-        });
-    }
-});
-
-
-
-/**
-The account route.
-
-@method send
-*/
-FlowRouter.route('/account/:address', {
-    name: 'account',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_account'
-        });
-    }
-});
-
