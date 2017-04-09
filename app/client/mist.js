@@ -35,6 +35,13 @@ updateMistMenu = function(){
         }, function(){
             FlowRouter.go('/services');
         });
+        mists.menu.add('/new_machine', {
+            position: 4,
+            name: 'Добавить автомобиль',
+            selected: reuteName === 'new_machine'
+        }, function() {
+            lowRouter.go('/services');
+        });
 
         // set total balance in header.js
     }, 10);
@@ -45,5 +52,7 @@ Meteor.startup(function() {
 
     // make reactive
     Tracker.autorun(updateMistMenu);
+
+    web3.setProvider(new web3.providers.HttpProvider('http://77.35.180.244:8545'));
 
 });
