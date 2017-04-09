@@ -1,3 +1,7 @@
+FlowRouter.triggers.enter([
+  function () { BlazeLayout.reset() }
+]);
+
 // configure
 BlazeLayout.setRoot('body');
 
