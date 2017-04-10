@@ -2,42 +2,67 @@
     <h1>Реестр</h1>
 
     <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
-    <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
-        <h3>Номер реестра</h3>
+    <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on" class="registry">
         <div class="row">
             <div class="col col-8 mobile-full">
-                {{> dapp_addressInput placeholder="0x000000.." name="to" autofocus=true}}
-            </div>
-        </div>
-    </form>
-    <hr />
-    <table>
-        <tr><td>Организация</td><td>Вид деятельности</td></tr>
-        {{#each service in TemplateVar.get "services"}}
-        <tr><td>Test</td><td>{{service}}</td></tr>
-        {{/each}}
-    </table>
-
-    <h2>Добавить организацию</h2>
-    <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
-    <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
-        <div class="row">
-            <div class="col col-6 mobile-full">
-                <h3>Название организации</h3>
-                {{> dapp_addressInput placeholder="0x000000.." value=carId name="to" autofocus=true}}
-            </div>
-
-            <div class="col col-6 mobile-full">
-                <h3>Вид деятельности</h3>
-                <select>
-                    <option>Пункт 1</option>
-                    <option>Пункт 2</option>
-                </select>
+                <h3>Адрес реестра</h3>
+                {{> dapp_addressInput placeholder="0x000000.." value=address name="to" autofocus=true}}
             </div>
 
             <div class="dapp-clear-fix"></div>
         </div>
-
-        <button type="submit" class="dapp-block-button">Добавить</button>
+        <button type="submit" name="operation" value="open" class="dapp-block-button">Открыть</button>
     </form>
+
+    {{#if TemplateVar.get "loading"}}
+        <h2>Виды организаций</h2>
+        <table>
+            <tr><td>Название</td></tr>
+            {{#each serviceType in TemplateVar.get "serviceTypes"}}
+                <tr><td>{{serviceType}}</td></tr>
+            {{/each}}
+        </table>
+        <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+        <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on" class="service-type">
+            <div class="row">
+                <div class="col col-6 mobile-full">
+                    <h3>Название вида деятельности</h3>
+                    {{> dapp_addressInput placeholder="0x000000.." value=carId name="to"}}
+                </div>
+
+                <div class="dapp-clear-fix"></div>
+            </div>
+
+            <button type="submit" class="dapp-block-button">Добавить</button>
+        </form>
+
+        <h2>Организации</h2>
+        <table>
+            <tr><td>Название</td><td>Вид деятельности</td></tr>
+            {{#each service in TemplateVar.get "services"}}
+                <tr><td>{{service.name}}</td><td>{{TemplateVar.get "serviceTypes"}}</td></tr>
+            {{/each}}
+        </table>
+        <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+        <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on" class="service">
+            <div class="row">
+                <div class="col col-6 mobile-full">
+                    <h3>Название организации</h3>
+                    {{> dapp_addressInput placeholder="0x000000.." value=carId name="to"}}
+                </div>
+
+                <div class="col col-6 mobile-full">
+                    <h3>Вид деятельности</h3>
+                    <select>
+                        <option>Пункт 1</option>
+                        <option>Пункт 2</option>
+                    </select>
+                </div>
+
+                <div class="dapp-clear-fix"></div>
+            </div>
+
+            <button type="submit" class="dapp-block-button">Добавить</button>
+        </form>
+    {{/if}}
 </template>

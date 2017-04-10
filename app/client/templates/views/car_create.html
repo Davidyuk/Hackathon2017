@@ -1,0 +1,12 @@
+<template name="views_car_create">
+    <h1>Добавить автомобиль</h1>
+
+    <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+    <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on" class="registry">
+        <button type="submit" name="operation" value="create" class="dapp-block-button">Добавить</button>
+    </form>
+
+    {{#if TemplateVar.get "loading"}}
+      Пожалуйста, подождите...
+    {{/if}}
+</template>

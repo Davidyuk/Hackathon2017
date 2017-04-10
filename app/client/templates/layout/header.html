@@ -1,24 +1,68 @@
 <template name="layout_header">
     <nav>
         <ul>
-            <li>
-                <a href="{{pathFor route='registry'}}" class="{{isActiveRoute regex='registry'}}">
-                    <i class="icon-list"></i>
-                    <span>Реестр</span>
-                </a>
-            </li>
+            {{#if isActivePath '/'}}
+                <li>
+                    <a href="{{pathFor route='registry'}}" class="{{isActiveRoute regex='registry'}}">
+                        <i class="icon-list"></i>
+                        <span>Реестр</span>
+                    </a>
+                </li>
+            {{/if}}
+            {{#if isActiveRoute regex='registry'}}
+                <li>
+                    <a href="{{pathFor route='registry'}}" class="{{isActiveRoute 'registry'}}">
+                        <i class="icon-list"></i>
+                        <span>Открыть</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{pathFor route='registry_create'}}" class="{{isActiveRoute 'registry_create'}}">
+                        <i class="icon-plus"></i>
+                        <span>Создать</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{pathFor route='registry_create_car'}}" class="{{isActiveRoute 'registry_create_car'}}">
+                        <i class="icon-plus"></i>
+                        <span>Добавить автомобиль</span>
+                    </a>
+                </li>
+            {{/if}}
+
+            {{#if isActivePath '/'}}
             <li>
                 <a href="{{pathFor route='cars'}}" class="{{isActiveRoute regex='cars'}}">
                     <i class="icon-speedometer"></i>
                     <span>Автомобиль</span>
                 </a>
             </li>
+            {{/if}}
+            {{#if isActiveRoute regex='cars'}}
+            <li>
+                <a href="{{pathFor route='cars'}}" class="{{isActiveRoute regex='cars'}}">
+                    <i class="icon-speedometer"></i>
+                    <span>Информация об автомобиле</span>
+                </a>
+            </li>
+            {{/if}}
+
+            {{#if isActivePath '/'}}
             <li>
                 <a href="{{pathFor route='services'}}" class="{{isActiveRoute regex='services'}}">
                     <i class="icon-wrench"></i>
                     <span>Услуги</span>
                 </a>
             </li>
+            {{/if}}
+            {{#if isActiveRoute regex='services'}}
+            <li>
+                <a href="{{pathFor route='services'}}" class="{{isActiveRoute regex='services'}}">
+                    <i class="icon-wrench"></i>
+                    <span>Зарегистрировать услугу</span>
+                </a>
+            </li>
+            {{/if}}
 
             <li class="block-info dapp-flex-item"></li>
             <li class="wallet-balance">
@@ -26,6 +70,6 @@
                 {{> elements_balance balance=totalBalance changeUnit=true}}
             </li>
 
-            </ul>
+        </ul>
     </nav>
 </template>

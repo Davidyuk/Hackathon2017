@@ -1,73 +1,36 @@
 pragma solidity ^0.4.0;
 
 contract Registry {
+    struct Service {
+        string name;
+        uint32 typeId;
+    }
+
     address public owner;
-    string public name;
+    string[] public serviceTypes;
+    mapping (address => Service) public services;
 
-    address[] public performerStorage;
-    uint32[] public operationStorage;
-
-    mapping (address => Performer) public performers;
-    mapping (uint32 => OperationType) public operationTypes;
-
-    uint32 operationTypeCounter;
-
-    struct Performer {
-        string name;
-        uint8 rating;
-        string description;
-    }
-
-    struct OperationType {
-        string name;
-        string description;
-    }
-
-    function Registry(string _name) {
+    function Registry() {
         owner = msg.sender;
-        name = _name;
-
-        operationTypes[1] = OperationType("owner change", "");
-        operationTypeCounter = 2;
-    }
-
-    function addPerformer(address performer, string name, uint8 rating, string description) isOwner {
-        if (rating == 0) throw;
-
-        performerStorage.push(performer);
-        performers[performer] = Performer(name, rating, description);
-    }
-
-    function addOperationType(string name, string description) isOwner {
-        if (bytes(description).length == 0) throw;
-
-        uint32 id = operationTypeCounter++;
-        operationStorage.push(id);
-        operationTypes[id] = OperationType(name, description);
-    }
-
-    function removePerformer(address performer) isOwner {
-        for (uint i = 0; i < performerStorage.length; i++)
-            if (performerStorage[i] == performer) delete performerStorage[i];
-        delete performers[performer];
-    }
-
-    function removeOperationType(uint32 id) isOwner {
-        for (uint i = 0; i < operationStorage.length; i++)
-            if (operationStorage[i] == id) delete operationStorage[i];
-        delete operationTypes[id];
-    }
-
-    function verifyOperation(address performer, uint32 operation) constant returns(bool) {
-        return (performers[performer].rating != 0) && (bytes(operationTypes[operation].description).length != 0);
-    }
-
-    function touch() isOwner constant returns(bool) {
-        return true;
     }
 
     modifier isOwner() {
         if (msg.sender != owner) throw;
         _;
+    }
+
+    function addServiceType(string serviceTypeName) isOwner {
+        if (bytes(serviceTypeName).length == 0) throw;
+        serviceTypes.push(serviceTypeName);
+    }
+
+    function addService(address serviceAddress, string serviceName, uint32 serviceTypeId) isOwner {
+        if (bytes(serviceName).length == 0 || serviceTypeId >= serviceTypes.length) throw;
+        services[serviceAddress] = Service(serviceName, serviceTypeId);
+    }
+
+    function checkOperation(address serviceAddress, uint32 serviceTypeId) constant returns(bool) {
+        return bytes(services[serviceAddress].name).length == 0 &&
+            serviceTypeId <= serviceTypes.length;
     }
 }

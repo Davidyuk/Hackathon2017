@@ -1,0 +1,29 @@
+<template name="views_registry_create">
+    <h1>Создать новый реестр</h1>
+
+    {{#if showForm}}
+        <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+        <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+            <h3>Создатель реестра</h3>
+            <div class="row">
+                <div class="col col-8 mobile-full">
+                    {{> dapp_selectAccount accounts=(selectAccounts deployContract) showAccountTypes=true}}
+                </div>
+                <div class="dapp-clear-fix"></div>
+            </div>
+            <button type="submit" class="dapp-block-button">Создать</button>
+        </form>
+    {{/if}}
+
+    {{#if TemplateVar.get 'wait'}}
+        <p>Пожалуйста, подождите...</p>
+    {{/if}}
+
+    {{#if TemplateVar.get 'transactionHash'}}
+        <p>Адрес транзакции: {{TemplateVar.get 'transactionHash'}}</p>
+    {{/if}}
+
+    {{#if TemplateVar.get 'address'}}
+        <p>Реестр создан с адресом: {{TemplateVar.get 'address'}}</p>
+    {{/if}}
+</template>
