@@ -1,0 +1,45 @@
+<template name="views_sign">
+    <h1>Sign document</h1>
+
+    <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+
+    {{#if TemplateVar.get "loading"}}
+        Пожалуйста, подождите...
+    {{/if}}
+
+
+    <div class="row">
+        <div class="col col-2 mobile-full">
+            <select name="example" id="selectDoc">
+                <option value="change"></option>
+                <option value="passport">Passport</option>
+                <option value="other">Other</option>
+            </select>
+            {{#if TemplateVar.get "passport"}}
+                <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+                    <textarea name="description" class="dapp-data-combobox " placeholder="серия" rows="2" cols="2"></textarea>
+                    <textarea name="description" class="dapp-data-combobox" placeholder="номер" rows="2" cols="2"></textarea>
+                    <input id="file-input" type="file" name="name" style="display: none;"/>
+                    <button type="submit" class="dapp-block-button" style="padding: 10px">Load file</button>
+
+                    <button type="submit" class="dapp-block-button">Sign</button>
+                </form>
+            {{/if}}
+            <!--<textarea name="description" class="dapp-data-combobox" placeholder="" rows="10"></textarea>-->
+        <!--<div class="dapp-clear-fix"></-->
+        </div>
+    </div>
+
+    {{#if TemplateVar.get "change"}}
+    {{/if}}
+
+
+
+    {{#if TemplateVar.get "other"}}
+        <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+            <button type="submit" class="dapp-block-button">Load file</button>
+            <input id="file-input" type="file" name="name" style="display: none;" />
+            <textarea name="description" class="dapp-data-combobox" placeholder="" rows="10"></textarea>
+        </form>
+    {{/if}}
+</template>

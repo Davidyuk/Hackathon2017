@@ -1,0 +1,9 @@
+<template name="views_verify">
+    <h1>Verify document</h1>
+
+    <!-- we use a form, which posts into the "dapp-form-helper-iframe" iframe, so that the browser stores inout fields for native autocpmplete -->
+    <form class="reg-service" action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
+        <button type="submit" class="dapp-block-button" id="load-button">Load...</button>
+        <input id="file-input" type="file" name="name" style="display: none;" />
+    </form>
+</template>

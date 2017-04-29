@@ -51,17 +51,23 @@ FlowRouter.route('/', {
     }
 });
 
+FlowRouter.route('/sign', {
+    name: 'sign',
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
+            main: 'views_sign'
         });
     }
 });
 
 
+FlowRouter.route('/verify', {
+    name: 'verify',
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
+            main: 'views_verify'
         });
     }
 });
