@@ -51,64 +51,17 @@ FlowRouter.route('/', {
     }
 });
 
-FlowRouter.route('/registry', {
-    name: 'registry',
     action: function(params, queryParams) {
         BlazeLayout.render('layout_main', {
             header: 'layout_header',
-            main: 'views_registry'
-        });
-    }
-});
-
-FlowRouter.route('/registry/:id', {
-    name: 'registry',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_registry'
-        });
-    }
-});
-
-FlowRouter.route('/cars', {
-    name: 'cars',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_cars'
-        });
-    }
-});
-
-FlowRouter.route('/cars/:id', {
-    name: 'car',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_cars'
-        });
-    }
-});
-
-FlowRouter.route('/services', {
-    name: 'services',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_services'
-        });
-    }
-});
-
-FlowRouter.route('/new_machine', {
-    name: 'new_machine',
-    action: function(params, queryParams) {
-        BlazeLayout.render('layout_main', {
-            header: 'layout_header',
-            main: 'views_new_machine'
         });
     }
 });
 
 
+    action: function(params, queryParams) {
+        BlazeLayout.render('layout_main', {
+            header: 'layout_header',
+        });
+    }
+});
