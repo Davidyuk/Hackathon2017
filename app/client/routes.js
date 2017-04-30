@@ -71,3 +71,23 @@ FlowRouter.route('/verify', {
         });
     }
 });
+
+FlowRouter.route('/acc', {
+    name: 'verify',
+    action: function(params, queryParams) {
+        BlazeLayout.revnder('layout_main', {
+            header: 'layout_header',
+            main: 'views_account_create'
+        });
+    }
+});
+
+FlowRouter.route('/contr', {
+    name: 'verify',
+    action: function(params, queryParams) {
+        BlazeLayout.render('layout_main', {
+            header: 'layout_header',
+            main: 'views_contracts'
+        });
+    }
+});

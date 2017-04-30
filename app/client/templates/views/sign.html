@@ -17,8 +17,16 @@
             </select>
             {{#if TemplateVar.get "passport"}}
                 <form action="about:blank" target="dapp-form-helper-iframe" autocomplete="on">
-                    <textarea name="description" class="dapp-data-combobox " placeholder="серия" rows="2" cols="2"></textarea>
-                    <textarea name="description" class="dapp-data-combobox" placeholder="номер" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-surename" name="description" class="dapp-data-combobox " placeholder="фамилия" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-name" name="description" class="dapp-data-combobox " placeholder="имя" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-middlename" name="description" class="dapp-data-combobox " placeholder="отчество" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-birthday" name="description" class="dapp-data-combobox " placeholder="дата рождения" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-serial" name="description" class="dapp-data-combobox " placeholder="серия" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-number" name="description" class="dapp-data-combobox" placeholder= "номер" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-issued-by" name="description" class="dapp-data-combobox " placeholder="кем выдан" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-issued-date" name="description" class="dapp-data-combobox " placeholder="когда выдан" rows="2" cols="2"></textarea>
+                    <textarea id = "pass-code" name="description" class="dapp-data-combobox " placeholder="код подразделения" rows="2" cols="2"></textarea>
+
                     <input id="file-input" type="file" name="name" style="display: none;"/>
                     <button type="submit" class="dapp-block-button" style="padding: 10px">Load file</button>
 
